@@ -67,7 +67,7 @@ day_cells = {
     2: [empty_cell()],
     3: [event_card('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR', custom_url='https://www.joinnus.com/landing/endeavor-2026'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
-    4: [event_card('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP', highlight=True),
+    4: [event_card('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP', highlight=True, custom_url='https://www.peruvcconference.com/'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
     5: [event_card('09:00 - 18:00', 'Techsuyo', 'PERU SV'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
@@ -148,7 +148,7 @@ mobile_events = {
         ('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
     ]),
     'Jue': ('15', 'Jueves 15 oct', [
-        ('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP'),
+        ('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP', 'https://www.peruvcconference.com/'),
         ('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
     ]),
     'Vie': ('16', 'Viernes 16 oct', [
