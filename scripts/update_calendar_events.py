@@ -43,10 +43,11 @@ else:
 # ─────────────────────────────────────────────────────────────
 # Helper: build an event card for the desktop grid
 # ─────────────────────────────────────────────────────────────
-def event_card(time, title, org, highlight=False, link=True):
+def event_card(time, title, org, highlight=False, link=True, custom_url=None):
     bg = 'background: rgba(221,28,41,.07); border: 1px solid rgba(221,28,41,.3);' if highlight else 'background: #0f0d0d; border: 1px solid #2a2a2a;'
     org_color = '#DD1C29' if highlight else '#6a6a6a'
-    reg = f'<div style="border-top: 1px solid #2a2a2a; padding-top: 10px; margin-top: 10px;"><a href="https://lu.ma/perutechweek" target="_blank" rel="noopener" style="color: #DD1C29; text-decoration: underline; text-underline-offset: 3px; font-size: 18px; font-weight: 600;" style-hover="color: #FF6C76;">Regístrate →</a></div>' if link else ''
+    url = custom_url if custom_url else 'https://lu.ma/perutechweek'
+    reg = f'<div style="border-top: 1px solid #2a2a2a; padding-top: 10px; margin-top: 10px;"><a href="{url}" target="_blank" rel="noopener" style="color: #DD1C29; text-decoration: underline; text-underline-offset: 3px; font-size: 18px; font-weight: 600;" style-hover="color: #FF6C76;">Regístrate →</a></div>' if link else ''
     return f'''<div style="{bg} border-radius: 10px; padding: 14px 14px 12px; margin-bottom: 6px;">
                   <div style="font-family: 'Codec Pro', sans-serif; font-size: 16px; color: #7a7a7a; margin-bottom: 6px;">{time}</div>
                   <div style="font-family: 'Codec Pro', sans-serif; font-weight: 700; font-size: 19px; color: #fff; line-height: 1.25; margin-bottom: 4px;">{title}</div>
@@ -64,7 +65,7 @@ def empty_cell():
 day_cells = {
     1: [event_card('18:00 - 22:00', 'Bienvenida Peru Tech Week 2026', 'PTW', highlight=True)],
     2: [empty_cell()],
-    3: [event_card('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR'),
+    3: [event_card('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR', custom_url='https://www.joinnus.com/landing/endeavor-2026'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
     4: [event_card('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP', highlight=True),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
@@ -143,7 +144,7 @@ mobile_events = {
     'Lun': ('12', 'Lunes 12 oct', [('18:00 - 22:00', 'Bienvenida Peru Tech Week 2026', 'PTW')]),
     'Mar': ('13', 'Martes 13 oct', []),
     'Mié': ('14', 'Miércoles 14 oct', [
-        ('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR'),
+        ('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR', 'https://www.joinnus.com/landing/endeavor-2026'),
         ('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
     ]),
     'Jue': ('15', 'Jueves 15 oct', [
@@ -167,14 +168,20 @@ def mobile_card(abbr, num, full, events):
     abbr_color = '#DD1C29' if abbr == 'Lun' else ('#E4E4E4' if has_events else '#4a4a4a')
     
     events_html = ''
-    for time, title, org in events:
+    for event in events:
+        time = event[0]
+        title = event[1]
+        org = event[2]
+        custom_url = event[3] if len(event) > 3 else None
         ptw_org = org == 'PTW'
         org_color = '#DD1C29' if ptw_org else '#7a7a7a'
+        reg = f'<div style="margin-top: 8px;"><a href="{custom_url}" target="_blank" rel="noopener" style="color: #DD1C29; text-decoration: underline; text-underline-offset: 3px; font-size: 15px; font-weight: 600;">Regístrate →</a></div>' if custom_url else ''
         events_html += f'''
             <div style="border-top: 1px solid #2a2a2a; padding-top: 10px; margin-top: 10px;">
               <div style="font-size: 13px; color: #6a6a6a; font-family: 'Codec Pro', sans-serif;">{time}</div>
               <div style="font-size: 16px; font-weight: 700; color: #fff; font-family: 'Codec Pro', sans-serif; line-height: 1.3; margin-top: 3px;">{title}</div>
               <div style="font-size: 13px; color: {org_color}; font-weight: 600; font-family: 'Codec Pro', sans-serif; margin-top: 2px;">{org}</div>
+              {reg}
             </div>'''
     
     no_event_msg = '' if has_events else '<div style="font-size: 13px; color: #4a4a4a; font-family: \'Codec Pro\', sans-serif; font-style: italic;">Sin eventos confirmados</div>'
