@@ -64,7 +64,8 @@ def empty_cell():
 # Events by day: Lun=col1, Mar=col2, Mié=col3, Jue=col4, Vie=col5, Sáb=col6, Dom=col7
 day_cells = {
     1: [event_card('18:00 - 22:00', 'Bienvenida Peru Tech Week 2026', 'PTW', highlight=True)],
-    2: [event_card('16:00 - 21:00', 'Fintech & Proptech Mixer', 'ADN')],
+    2: [event_card('07:30 - 12:30', 'SHIFT Connect<br><span style="font-size:14px; font-weight:normal; color:#a0a0a0;">📍 Oficinas de PWC (San Isidro)</span>', 'SHIFT'),
+        event_card('16:00 - 21:00', 'Fintech & Proptech Mixer', 'ADN')],
     3: [event_card('09:00 - 17:00', 'Experiencia Endeavor', 'ENDEAVOR', custom_url='https://www.joinnus.com/landing/endeavor-2026'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
     4: [event_card('09:00 - 19:00', 'Peru Venture Capital Conference 2026', 'PECAP', highlight=True, custom_url='https://www.peruvcconference.com/'),
@@ -72,7 +73,8 @@ day_cells = {
     5: [event_card('09:00 - 18:00', 'Techsuyo', 'PERU SV'),
         event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
         event_card('18:00 - 22:00', 'Cóctel de cierre PTW 2026', 'PTW', highlight=True)],
-    6: [event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
+    6: [event_card('09:00 - 20:00', 'UTEC Ventures AI Frontier Conference<br><span style="font-size:14px; font-weight:normal; color:#a0a0a0;">📍 UTEC (Barranco)</span>', 'UTEC Ventures'),
+        event_card('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')],
     7: [empty_cell()],
 }
 
@@ -143,6 +145,7 @@ mobile_end = template.find('</div>\n    </div>', mobile_start)  # close of inner
 mobile_events = {
     'Lun': ('12', 'Lunes 12 oct', [('18:00 - 22:00', 'Bienvenida Peru Tech Week 2026', 'PTW')]),
     'Mar': ('13', 'Martes 13 oct', [
+        ('07:30 - 12:30', 'SHIFT Connect<br><span style="font-size:13px; font-weight:normal; color:#a0a0a0;">📍 Oficinas de PWC (San Isidro)</span>', 'SHIFT'),
         ('16:00 - 21:00', 'Fintech & Proptech Mixer', 'ADN'),
     ]),
     'Mié': ('14', 'Miércoles 14 oct', [
@@ -158,7 +161,10 @@ mobile_events = {
         ('10:00 - 19:30', 'Peru Business Fest', 'COFIDE'),
         ('18:00 - 22:00', 'Cóctel de cierre PTW 2026', 'PTW'),
     ]),
-    'Sáb': ('17', 'Sábado 17 oct', [('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')]),
+    'Sáb': ('17', 'Sábado 17 oct', [
+        ('09:00 - 20:00', 'UTEC Ventures AI Frontier Conference<br><span style="font-size:13px; font-weight:normal; color:#a0a0a0;">📍 UTEC (Barranco)</span>', 'UTEC Ventures'),
+        ('10:00 - 19:30', 'Peru Business Fest', 'COFIDE')
+    ]),
     'Dom': ('18', 'Domingo 18 oct', []),
 }
 
